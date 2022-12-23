@@ -1,54 +1,57 @@
-function computerPlay() {
-    randNum = Math.floor(Math.random()*3)//gives between 0 and 1 then  *3 gives between 0 and 3 then flooring it gives 0,1,2
-    const rpsList = ["rock", "paper", "scissors"]
-    let computerChoice = rpsList[randNum]
-    console.log("The computer chooses " + computerChoice)
-    return computerChoice
-
+function computerChoice(){
+  choiceArray = ["Rock", "Paper", "Scissors"]; 
+  // generate a random index number as Computer's choice
+  choiceIndex = (Math.floor(Math.random() * 3));
+  compPlay = choiceArray[choiceIndex];
+  return compPlay;
 }
 
+function singleRound(playerChoice, compPlay = ""){
+  // set the default value of computerChoice  
+  // the winner is set to false unless the player wins
+  // call the computerChoice function to get compPlay
+  compPlay = computerChoice();
+  winner = false;
+  playerChoice = playerChoice.toLowerCase();
+  compPlay = compPlay.toLowerCase();
+  // rock vs paper, comp wins
+  if (playerChoice == 'rock' && compPlay == 'paper'){
+  }
+  // rock vs scissors, player wins
+  if (playerChoice == 'rock' && compPlay == 'scissors'){
+    winner = true;
+  }
+  
+  // paper vs scissors, comp wins
+  if (playerChoice == 'paper' && compPlay == 'scissors'){
+  }
+  // paper vs rock, player wins
+  if (playerChoice == 'paper' && compPlay == 'rock'){
+    winner = true;
+  }
 
- function playRound(playerSelection, computerSelection) {//playRound is declared
-  if (playerSelection === "rock" && computerSelection === "scissors"){
-         console.log("You win")
-     }
-    else if (playerSelection === "rock" && computerSelection === "paper"){
-         console.log("You lose")
-     }
-     else if (playerSelection === "paper" && computerSelection === "scissors"){
-         console.log("You lose")   
-     }
-     else if (playerSelection === "paper" && computerSelection === "rock"){
-         console.log("You win")
-     }
-    else if (playerSelection === "scissors" && computerSelection === "paper"){
-         console.log("You win")
-     }
-    else if (playerSelection === "scissors" && computerSelection === "rock"){
-         console.log("You lose")    
-    }
-    else if (playerSelection === computerSelection){
-     console.log("Tie")  
-    }
-   
-}  
+  // scissors vs rock, comp wins
+  if (playerChoice == 'scissors' && compPlay == 'rock'){
+  }
+  // scissors vs paper, player wins
+  if (playerChoice == 'scissors' && compPlay == 'paper'){
+    winner = true;
+  }
+  if (winner == true){
+    // use backticks for template literals 
+    console.log(`Player has won! Computer chose ${compPlay}`);
+  }
+  else if (winner == false){
+    console.log(`Player has lost! Computer chose ${compPlay}`);
+  }
+  return winner;
+}
 
- 
-function game() {
-    for (i = 0; i<5; i++) {//5 rounds
- 
-    let playerSelection = prompt("Rock, Paper, or Scissors?" , '');
-    if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors") {
-        console.log("You choose "+ playerSelection)
-        let computerSelection = computerPlay();
-        playRound(playerSelection, computerSelection);//playRound is called here 
-        console.log("Round " + (i+1) + " complete")// i+1 because i starts from 0
-        }
-    else 
-        playerSelection = prompt("Please choose rock, paper, or scissors ", '');// for this if there is some random value for playerSelection the round will skip
-        
-    }  
-    
- }
- 
-console.log(game());//game is run here
+function game(){
+  for(let i=0; i<5; i++){
+    user_play = window.prompt("Rock, Paper or Scissors?");
+    singleRound(user_play);
+    // keep track of the score
+  }
+}
+game();
